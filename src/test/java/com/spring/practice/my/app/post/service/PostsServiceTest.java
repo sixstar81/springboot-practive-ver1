@@ -17,8 +17,9 @@ class PostsServiceTest {
 
     @Test
     void updatedPost(){
-        
+
         PostDto dto = new PostDto(null, "title", "content");
+        
         Post saved = postsService.save(dto);
 
         PostDto updateDto = new PostDto(saved.getId(), "title2", "content2");
