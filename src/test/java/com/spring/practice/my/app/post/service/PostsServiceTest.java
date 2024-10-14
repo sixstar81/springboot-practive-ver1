@@ -17,6 +17,7 @@ class PostsServiceTest {
 
     @Test
     void updatedPost(){
+        
         PostDto dto = new PostDto(null, "title", "content");
         Post saved = postsService.save(dto);
 
@@ -28,5 +29,4 @@ class PostsServiceTest {
         assertThat(updatedEntity.getTitle()).isEqualTo("title2");
         assertThat(updatedEntity.getContent()).isEqualTo("content2");
     }
-
 }
