@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 class PostsController {
 
+
     @GetMapping("/posts")
     ResponseEntity<List<Post>> findAll(){
         PostDto dto = null;

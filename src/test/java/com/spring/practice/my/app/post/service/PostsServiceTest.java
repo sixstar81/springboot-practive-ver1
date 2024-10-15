@@ -2,7 +2,9 @@ package com.spring.practice.my.app.post.service;
 
 import com.spring.practice.my.app.post.Post;
 import com.spring.practice.my.app.post.PostDto;
-import com.spring.practice.my.app.post.service.PostsService;
+import com.spring.practice.my.app.post.PostsRepository;
+import com.spring.practice.my.app.post.PostsService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,19 +17,35 @@ class PostsServiceTest {
     @Autowired
     PostsService postsService;
 
+    @Autowired
+    PostsRepository postsRepository;
+
+    @BeforeEach
+    void reset(){
+        PostDto dto1 = new PostDto(null, "title1", "content1");
+        PostDto dto2 = new PostDto(null, "title2", "content2");
+        PostDto dto3 = new PostDto(null, "title3", "content3");
+        postsService.save(dto1);
+        postsService.save(dto2);
+        postsService.save(dto3);
+    }
+
     @Test
     void updatedPost(){
 
-        PostDto dto = new PostDto(null, "title", "content");
-        
-        Post saved = postsService.save(dto);
-
-        PostDto updateDto = new PostDto(saved.getId(), "title2", "content2");
+        assertThat(postsService.findAll().size()).isEqualTo(3);
+        PostDto updateDto = new PostDto(1L, "title2", "content2");
         postsService.save(updateDto);
 
-        Post updatedEntity = postsService.findById(saved.getId());
+        Post updatedEntity = postsService.findById(1L);
 
         assertThat(updatedEntity.getTitle()).isEqualTo("title2");
         assertThat(updatedEntity.getContent()).isEqualTo("content2");
+    }
+
+    @Test
+    void save(){
+        assertThat(postsService.findAll().size()).isEqualTo(3);
+        postsService.save(new PostDto(null,"testTitle", "testContent"));
     }
 }
