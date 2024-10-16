@@ -22,30 +22,39 @@ class PostsServiceTest {
 
     @BeforeEach
     void reset(){
-        PostDto dto1 = new PostDto(null, "title1", "content1");
-        PostDto dto2 = new PostDto(null, "title2", "content2");
-        PostDto dto3 = new PostDto(null, "title3", "content3");
-        postsService.save(dto1);
-        postsService.save(dto2);
-        postsService.save(dto3);
+        postsRepository.deleteAllInBatch();
     }
 
     @Test
     void updatedPost(){
-
-        assertThat(postsService.findAll().size()).isEqualTo(3);
+        //given
+        postLoads();
+        //when
         PostDto updateDto = new PostDto(1L, "title2", "content2");
         postsService.save(updateDto);
 
+        //then
         Post updatedEntity = postsService.findById(1L);
-
         assertThat(updatedEntity.getTitle()).isEqualTo("title2");
         assertThat(updatedEntity.getContent()).isEqualTo("content2");
     }
 
     @Test
     void save(){
-        assertThat(postsService.findAll().size()).isEqualTo(3);
-        postsService.save(new PostDto(null,"testTitle", "testContent"));
+        //when
+        Post saved = postsService.save(new PostDto(null, "testTitle", "testContent"));
+        //then
+        Post byId = postsService.findById(saved.getId());
+        System.out.println(byId);
+        assertThat(byId.getId()).isNotNull();
+    }
+
+    void postLoads(){
+        PostDto dto1 = new PostDto(null, "title1", "content1");
+        PostDto dto2 = new PostDto(null, "title2", "content2");
+        PostDto dto3 = new PostDto(null, "title3", "content3");
+        postsService.save(dto1);
+        postsService.save(dto2);
+        postsService.save(dto3);
     }
 }

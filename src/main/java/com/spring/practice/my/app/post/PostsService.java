@@ -11,4 +11,3 @@ public interface PostsService {
     // update or insert
     Post save(PostDto dto);
 }
-
