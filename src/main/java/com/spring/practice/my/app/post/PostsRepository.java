@@ -1,6 +1,7 @@
 package com.spring.practice.my.app.post;
 
 import com.spring.practice.my.app.post.Post;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,4 +23,7 @@ public interface PostsRepository extends JpaRepository<Post, Long> {
     //Native Query
     @Query(value = "select * from posts where title = :title and level = :level", nativeQuery = true)
     List<Post> findByTitleAndLevelOfNative(@Param("title")String title,@Param("level")int level);
+
+    @Query("select u.title, u.content, u.level from Post u where u.title like %?1% and u.level = ?2")
+    List<Object[]> findByAsArrayAndSort(String title, int level, Sort sort);
 }

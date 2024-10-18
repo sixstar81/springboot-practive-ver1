@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Streamable;
 
 import java.util.List;
@@ -60,6 +61,21 @@ class PostsRepositoryTest {
         assertThat(postOfTitleAndLevelOfNative).hasSize(2)
                 .extracting("content")
                 .containsExactlyInAnyOrder("content1", "content2");
+
+    }
+
+    @Test
+    void findByArraySort(){
+        createPost("title1", "content1", 1, true);
+        createPost("title2", "content2", 2, false);
+        createPost("title1-2", "content2", 1, false);
+        createPost("a-title1-2", "content2", 1, false);
+        createPost("pages", "content3",3, true);
+
+        List<Object[]> results = postsRepository.findByAsArrayAndSort("title", 1, Sort.by("title"));
+        results.forEach(objects -> System.out.println(objects[0] + "/" + objects[1] + "/" + objects[2]));
+        assertThat(results.get(1)[0]).isEqualTo("title1");
+
 
     }
 
