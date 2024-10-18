@@ -3,7 +3,10 @@ package com.spring.practice.my.app.post;
 import com.spring.practice.my.app.post.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.util.Streamable;
+
+import java.util.List;
 
 public interface PostsRepository extends JpaRepository<Post, Long> {
     Streamable<Post> findByTitle(String title);
@@ -12,5 +15,11 @@ public interface PostsRepository extends JpaRepository<Post, Long> {
     @Query("select count(u) from #{#entityName} u where u.level = ?2 and u.active= ?1")
     int findNumberOfActivePost(boolean active, int level);
 
+    //JPQL
+    @Query("select u from #{#entityName} u where u.title = :title and u.level = :level")
+    List<Post> findByTitleAndLevel(@Param("title")String title,@Param("level")int level);
 
+    //Native Query
+    @Query(value = "select * from posts where title = :title and level = :level", nativeQuery = true)
+    List<Post> findByTitleAndLevelOfNative(@Param("title")String title,@Param("level")int level);
 }

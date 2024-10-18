@@ -44,11 +44,23 @@ class PostsRepositoryTest {
     @Test
     void findByLevelAndActive(){
         createPost("title", "content1", 1, true);
-        createPost("title", "content2", 2, false);
-        createPost("title2", "content3",3, true);
+        createPost("title", "content2", 1, false);
+        createPost("title", "content3",3, true);
 
         int numberOfActivePost = postsRepository.findNumberOfActivePost(true, 1);
         assertThat(numberOfActivePost).isEqualTo(1);
+
+        List<Post> postOfTitleAndLevel = postsRepository.findByTitleAndLevel("title", 1);
+        assertThat(postOfTitleAndLevel).hasSize(2)
+                .extracting("content")
+                .containsExactlyInAnyOrder("content1", "content2");
+
+        List<Post> postOfTitleAndLevelOfNative = postsRepository.findByTitleAndLevelOfNative("title", 1);
+        System.out.println(postOfTitleAndLevelOfNative);
+        assertThat(postOfTitleAndLevelOfNative).hasSize(2)
+                .extracting("content")
+                .containsExactlyInAnyOrder("content1", "content2");
+
     }
 
     void createPost(String title, String content, int level, boolean active){
