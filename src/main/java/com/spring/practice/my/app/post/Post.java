@@ -1,19 +1,15 @@
 package com.spring.practice.my.app.post;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @ToString
 @NoArgsConstructor
+@Setter
 @Getter
+@Table(name = "POSTS")
 @Entity
 public class Post {
     @Id
@@ -21,19 +17,16 @@ public class Post {
     Long id;
     String title;
     String content;
+    int level;
+    boolean active;
     LocalDateTime registerDate;
 
     @Builder
-    Post(String title, String content){
+    Post(String title, String content, int level, boolean active){
         this.title = title;
         this.content = content;
+        this.level = level;
+        this.active = active;
         this.registerDate = LocalDateTime.now();
-    }
-
-    public void setTitle(String title){
-        this.title = title;
-    }
-    public void setContent(String content){
-        this.content = content;
     }
 }
