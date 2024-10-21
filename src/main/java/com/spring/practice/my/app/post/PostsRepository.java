@@ -24,6 +24,12 @@ public interface PostsRepository extends JpaRepository<Post, Long> {
     @Query(value = "select * from posts where title = :title and level = :level", nativeQuery = true)
     List<Post> findByTitleAndLevelOfNative(@Param("title")String title,@Param("level")int level);
 
+    //JPQL to Object Array List
     @Query("select u.title, u.content, u.level from Post u where u.title like %?1% and u.level = ?2")
     List<Object[]> findByAsArrayAndSort(String title, int level, Sort sort);
+
+    //JPQL to DTO
+    @Query("select new com.spring.practice.my.app.post.PostResponse(u.title, u.content, u.level) from Post u where u.title like %?1% and u.level = ?2")
+    List<PostResponse> findByAsArrayAndSort2(String title, int level, Sort sort);
+
 }

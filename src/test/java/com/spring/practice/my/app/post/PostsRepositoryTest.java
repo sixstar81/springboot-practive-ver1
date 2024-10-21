@@ -73,9 +73,22 @@ class PostsRepositoryTest {
         createPost("pages", "content3",3, true);
 
         List<Object[]> results = postsRepository.findByAsArrayAndSort("title", 1, Sort.by("title"));
-        results.forEach(objects -> System.out.println(objects[0] + "/" + objects[1] + "/" + objects[2]));
-        assertThat(results.get(1)[0]).isEqualTo("title1");
+        //[{"a-title1-2", "content2", "1"},{"title1", "content1", 1}, {"title1-2", "content2", 1}]
+        List<PostResponse> results2 = postsRepository.findByAsArrayAndSort2("title", 1, Sort.by("title"));
 
+        results.forEach(objects -> System.out.println(objects[0] + "/" + objects[1] + "/" + objects[2]));
+        results2.forEach(System.out::println);
+
+        assertThat(results.get(0)[0]).isEqualTo("a-title1-2");
+        assertThat(results.get(1)[0]).isEqualTo("title1");
+        assertThat(results.get(2)[1]).isEqualTo("content2");
+        assertThat(results2).hasSize(3)
+                .extracting("title", "content", "level")
+                .containsExactlyInAnyOrder(
+                        tuple("a-title1-2", "content2", 1),
+                        tuple("title1", "content1", 1),
+                        tuple("title1-2", "content2", 1)
+                        );
 
     }
 
