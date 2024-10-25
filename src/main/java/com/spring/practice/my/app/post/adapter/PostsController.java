@@ -24,8 +24,8 @@ class PostsController {
     }
 
     @PostMapping("/posts")
-    ResponseEntity<Void> register(@RequestBody PostRequest request){
-        postsService.save(new PostDto(null, request.title(), request.content()));
-        return ResponseEntity.status(201).build();
+    ResponseEntity<Post> register(@RequestBody PostRequest request){
+        Post saved = postsService.save(new PostDto(null, request.title(), request.content()));
+        return ResponseEntity.status(201).body(saved);
     }
 }
