@@ -1,0 +1,1 @@
+curl -d '{"title":"title1", "content":"content1"}' -H "Content-Type: application/json" -X POST http://localhost:8080/posts
