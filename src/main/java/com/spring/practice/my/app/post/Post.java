@@ -22,7 +22,7 @@ public class Post {
     LocalDateTime registerDate;
 
     @Builder
-    Post(String title, String content, int level, boolean active){
+    public Post(String title, String content, int level, boolean active){
         this.title = title;
         this.content = content;
         this.level = level;
