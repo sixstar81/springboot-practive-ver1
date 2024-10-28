@@ -1,9 +1,6 @@
 package com.spring.practice.my.app.coffee.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +29,7 @@ public class Coffee {
     private Long id;
     private String name;
     private LocalDateTime registered;
+    @Enumerated(EnumType.STRING) //생략하면 EnumType.ORDINAL(순번)으로 기본설정
     private CoffeeType coffeeType;
     @Builder
     Coffee(String name, CoffeeType coffeeType){

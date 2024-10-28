@@ -11,7 +11,6 @@ import java.util.List;
  */
 public interface ICoffee {
     Coffee register(Coffee coffee);
-    Coffee findById(Long id);
     List<Coffee> findByName(String name);
     List<Coffee> findByType(CoffeeType type);
 }

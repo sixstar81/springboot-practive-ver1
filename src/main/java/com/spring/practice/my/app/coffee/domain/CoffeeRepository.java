@@ -5,4 +5,5 @@ import org.springframework.data.util.Streamable;
 
 public interface CoffeeRepository extends JpaRepository<Coffee, Long> {
     Streamable<Coffee> findByNameContaining(String name);
+
 }

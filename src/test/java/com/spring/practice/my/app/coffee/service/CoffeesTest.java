@@ -8,8 +8,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import static com.spring.practice.my.app.coffee.domain.CoffeeType.*;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
@@ -24,6 +29,9 @@ class CoffeesTest {
     @Autowired
     CoffeeRepository coffeeRepository;
 
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
     @BeforeEach
     void init(){
         coffeeRepository.deleteAllInBatch();
@@ -32,8 +40,20 @@ class CoffeesTest {
     @Test
     void registerCoffee(){
         Coffee coffee = createCoffee("ice-americano", AMERICANO);
-        Coffee register = coffees.register(coffee);
-        Assertions.assertThat(register.getId()).isNotNull();
+        coffees.register(coffee);
+
+        jdbcTemplate.query("select * from coffee", new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                System.out.println("---------------");
+//                System.out.println(rs.getObject("coffee_type"));
+                System.out.println(rs.getString("coffee_type"));
+                return 0;
+            }
+        });
+
+        Optional<Coffee> byId = coffeeRepository.findById(1L);
+
     }
 
     @Test

@@ -20,11 +20,6 @@ public class Coffees implements ICoffee {
     }
 
     @Override
-    public Coffee findById(Long id) {
-        return null;
-    }
-
-    @Override
     public List<Coffee> findByName(String name) {
         return coffeeRepository.findByNameContaining(name).toList();
     }
