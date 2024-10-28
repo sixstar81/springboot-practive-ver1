@@ -43,7 +43,7 @@ class PostsControllerTest {
 
     @Test
     void create_post() throws Exception {
-        PostRequest request = new PostRequest("title", "content", 1, true);
+        PostRequest request = new PostRequest("title", "content");
         when(postsService.save(any())).thenReturn(new Post("title", "content", 1, true));
         mvc.perform(post("/posts")
                 .content(mapper.writeValueAsString(request))
@@ -51,5 +51,4 @@ class PostsControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
-
 }

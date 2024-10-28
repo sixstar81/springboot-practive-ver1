@@ -1,6 +1,6 @@
 package com.spring.practice.my.app.post;
 
-import jakarta.transaction.Transactional;
+import com.spring.practice.my.app.post.service.PostDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,11 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Streamable;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PostsRepositoryTest {

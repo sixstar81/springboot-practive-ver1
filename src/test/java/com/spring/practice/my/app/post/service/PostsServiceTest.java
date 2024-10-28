@@ -1,7 +1,6 @@
 package com.spring.practice.my.app.post.service;
 
 import com.spring.practice.my.app.post.Post;
-import com.spring.practice.my.app.post.PostDto;
 import com.spring.practice.my.app.post.PostsRepository;
 import com.spring.practice.my.app.post.PostsService;
 import org.junit.jupiter.api.BeforeEach;

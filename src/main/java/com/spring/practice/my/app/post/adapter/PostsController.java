@@ -1,16 +1,11 @@
 package com.spring.practice.my.app.post.adapter;
 
 import com.spring.practice.my.app.post.Post;
-import com.spring.practice.my.app.post.PostDto;
+import com.spring.practice.my.app.post.service.PostDto;
 import com.spring.practice.my.app.post.PostsService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.naming.OperationNotSupportedException;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
