@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ import static org.springframework.util.StringUtils.hasText;
  * 3. 제품 유형
  *    - 에스프레소 / 아메리카노 / 라떼
  */
+@ToString
 @NoArgsConstructor
 @Getter
 @Entity
@@ -40,5 +42,6 @@ public class Coffee {
         this.name = name;
         this.coffeeType = coffeeType;
         this.registered = LocalDateTime.now();
+
     }
 }

@@ -26,7 +26,7 @@ public class Coffees implements ICoffee {
 
     @Override
     public List<Coffee> findByName(String name) {
-        return null;
+        return coffeeRepository.findByNameContaining(name).toList();
     }
 
     @Override
