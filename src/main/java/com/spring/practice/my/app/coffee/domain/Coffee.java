@@ -29,7 +29,8 @@ public class Coffee {
     private Long id;
     private String name;
     private LocalDateTime registered;
-    @Enumerated(EnumType.STRING) //생략하면 EnumType.ORDINAL(순번)으로 기본설정
+    //@Enumerated(EnumType.STRING) //생략하면 EnumType.ORDINAL(순번)으로 기본설정
+    @Convert(converter = CoffeeTypeConverter.class)
     private CoffeeType coffeeType;
     @Builder
     Coffee(String name, CoffeeType coffeeType){

@@ -26,6 +26,6 @@ public class Coffees implements ICoffee {
 
     @Override
     public List<Coffee> findByType(CoffeeType type) {
-        return null;
+        return coffeeRepository.findByType(type);
     }
 }

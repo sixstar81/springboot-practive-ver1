@@ -5,12 +5,11 @@ import jakarta.persistence.AttributeConverter;
 public class CoffeeTypeConverter implements AttributeConverter<CoffeeType, String> {
     @Override
     public String convertToDatabaseColumn(CoffeeType type) {
-
-        return null;
+        return type.getCode();
     }
 
     @Override
-    public CoffeeType convertToEntityAttribute(String s) {
-        return null;
+    public CoffeeType convertToEntityAttribute(String code) {
+        return CoffeeType.toEnum(code);
     }
 }

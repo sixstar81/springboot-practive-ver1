@@ -42,18 +42,17 @@ class CoffeesTest {
         Coffee coffee = createCoffee("ice-americano", AMERICANO);
         coffees.register(coffee);
 
+        //coffeeType이 code값으로 잘 저장되는지 확인
         jdbcTemplate.query("select * from coffee", new RowMapper<Integer>() {
             @Override
             public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                System.out.println("---------------");
-//                System.out.println(rs.getObject("coffee_type"));
                 System.out.println(rs.getString("coffee_type"));
                 return 0;
             }
         });
 
         Optional<Coffee> byId = coffeeRepository.findById(1L);
-
+        System.out.println(byId.get());
     }
 
     @Test
@@ -70,6 +69,17 @@ class CoffeesTest {
                         tuple("ice-espresso", ESPRESSO),
                         tuple("ice-latte", LATTE)
                 );
+    }
+
+    @Test
+    void findByType(){
+        //given
+        coffeeLoads();
+        //when
+        List<Coffee> byType = coffees.findByType(AMERICANO);
+        Assertions.assertThat(byType).hasSize(3)
+                .extracting("coffeeType")
+                .containsExactlyInAnyOrder(AMERICANO, AMERICANO, AMERICANO);
     }
 
     private void coffeeLoads() {
