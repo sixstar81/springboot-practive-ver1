@@ -9,7 +9,7 @@ import java.util.List;
  *     - 커피 제품명으로 조회하기
  *     - 제품 유형으로 조회하기
  */
-public interface ICoffee {
+public interface ICoffees {
     Coffee register(Coffee coffee);
     List<Coffee> findByName(String name);
     List<Coffee> findByType(CoffeeType type);

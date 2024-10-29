@@ -1,4 +1,4 @@
-package com.spring.practice.my.app.coffee.domain;
+package com.spring.practice.my.app.coffee;
 
 import com.spring.practice.my.app.coffee.Coffee;
 import com.spring.practice.my.app.coffee.CoffeeType;
