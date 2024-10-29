@@ -1,9 +1,9 @@
 package com.spring.practice.my.app.coffee.service;
 
-import com.spring.practice.my.app.coffee.domain.Coffee;
-import com.spring.practice.my.app.coffee.domain.CoffeeRepository;
-import com.spring.practice.my.app.coffee.domain.CoffeeType;
-import com.spring.practice.my.app.coffee.domain.ICoffee;
+import com.spring.practice.my.app.coffee.Coffee;
+import com.spring.practice.my.app.coffee.CoffeeRepository;
+import com.spring.practice.my.app.coffee.CoffeeType;
+import com.spring.practice.my.app.coffee.ICoffee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class Coffees implements ICoffee {
+class Coffees implements ICoffee {
 
     private final CoffeeRepository coffeeRepository;
     @Override

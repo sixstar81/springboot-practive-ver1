@@ -1,5 +1,7 @@
 package com.spring.practice.my.app.coffee.domain;
 
+import com.spring.practice.my.app.coffee.Coffee;
+import com.spring.practice.my.app.coffee.CoffeeType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

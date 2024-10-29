@@ -1,4 +1,4 @@
-package com.spring.practice.my.app.coffee.domain;
+package com.spring.practice.my.app.coffee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

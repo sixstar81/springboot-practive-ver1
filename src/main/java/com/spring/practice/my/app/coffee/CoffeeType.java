@@ -1,4 +1,4 @@
-package com.spring.practice.my.app.coffee.domain;
+package com.spring.practice.my.app.coffee;
 
 import lombok.Getter;
 

@@ -1,11 +1,10 @@
-package com.spring.practice.my.app.coffee.domain;
+package com.spring.practice.my.app.coffee;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
