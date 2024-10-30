@@ -49,5 +49,4 @@ class CoffeeControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Americano"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.coffeeType").value("ESPRESSO"));
     }
-
 }

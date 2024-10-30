@@ -18,8 +18,8 @@ class CoffeeController {
     private final ICoffees coffees;
 
     @GetMapping("/coffee/{name}")
-    List<Coffee> findByName(@PathVariable String name){
-        return coffees.findByName(name);
+    ResponseEntity<List<Coffee>> findByName(@PathVariable String name){
+        return ResponseEntity.ok(coffees.findByName(name));
     }
 
     @PostMapping("/coffee")
@@ -29,6 +29,7 @@ class CoffeeController {
                         .name(request.name())
                         .coffeeType(CoffeeType.toEnum(request.typeCode())).build()
         );
-        return ResponseEntity.status(HttpStatus.CREATED).body(registered);
+        //return ResponseEntity.status(HttpStatus.CREATED).body(registered);
+        return new ResponseEntity<>(registered, HttpStatus.CREATED);
     }
 }
