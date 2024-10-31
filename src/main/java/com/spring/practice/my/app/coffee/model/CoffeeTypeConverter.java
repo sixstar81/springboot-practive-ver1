@@ -1,4 +1,4 @@
-package com.spring.practice.my.app.coffee;
+package com.spring.practice.my.app.coffee.model;
 
 import jakarta.persistence.AttributeConverter;
 

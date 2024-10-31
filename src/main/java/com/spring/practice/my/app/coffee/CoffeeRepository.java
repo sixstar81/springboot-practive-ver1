@@ -1,5 +1,6 @@
 package com.spring.practice.my.app.coffee;
 
+import com.spring.practice.my.app.coffee.model.CoffeeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.util.Streamable;

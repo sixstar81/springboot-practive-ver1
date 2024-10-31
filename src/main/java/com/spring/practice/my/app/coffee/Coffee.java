@@ -1,5 +1,7 @@
 package com.spring.practice.my.app.coffee;
 
+import com.spring.practice.my.app.coffee.model.CoffeeType;
+import com.spring.practice.my.app.coffee.model.CoffeeTypeConverter;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

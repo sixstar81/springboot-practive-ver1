@@ -2,7 +2,7 @@ package com.spring.practice.my.app.coffee.service;
 
 import com.spring.practice.my.app.coffee.Coffee;
 import com.spring.practice.my.app.coffee.CoffeeRepository;
-import com.spring.practice.my.app.coffee.CoffeeType;
+import com.spring.practice.my.app.coffee.model.CoffeeType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import static com.spring.practice.my.app.coffee.CoffeeType.*;
+import static com.spring.practice.my.app.coffee.model.CoffeeType.*;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
 @SpringBootTest

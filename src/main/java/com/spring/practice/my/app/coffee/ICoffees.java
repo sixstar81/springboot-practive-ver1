@@ -1,5 +1,8 @@
 package com.spring.practice.my.app.coffee;
 
+import com.spring.practice.my.app.coffee.model.CoffeeDTO;
+import com.spring.practice.my.app.coffee.model.CoffeeType;
+
 import java.util.List;
 
 /**
@@ -10,7 +13,7 @@ import java.util.List;
  *     - 제품 유형으로 조회하기
  */
 public interface ICoffees {
-    Coffee register(Coffee coffee);
+    CoffeeDTO register(Coffee coffee);
     List<Coffee> findByName(String name);
     List<Coffee> findByType(CoffeeType type);
 }

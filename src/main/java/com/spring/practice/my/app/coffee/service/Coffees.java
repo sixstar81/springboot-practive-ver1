@@ -2,7 +2,8 @@ package com.spring.practice.my.app.coffee.service;
 
 import com.spring.practice.my.app.coffee.Coffee;
 import com.spring.practice.my.app.coffee.CoffeeRepository;
-import com.spring.practice.my.app.coffee.CoffeeType;
+import com.spring.practice.my.app.coffee.model.CoffeeDTO;
+import com.spring.practice.my.app.coffee.model.CoffeeType;
 import com.spring.practice.my.app.coffee.ICoffees;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ class Coffees implements ICoffees {
 
     private final CoffeeRepository coffeeRepository;
     @Override
-    public Coffee register(Coffee coffee) {
-        return coffeeRepository.save(coffee);
+    public CoffeeDTO register(Coffee coffee) {
+        return mapToDTO(coffeeRepository.save(coffee));
     }
 
     @Override
@@ -28,4 +29,9 @@ class Coffees implements ICoffees {
     public List<Coffee> findByType(CoffeeType type) {
         return coffeeRepository.findByType(type);
     }
+
+    private CoffeeDTO mapToDTO(Coffee coffee){
+        return new CoffeeDTO(coffee.getName(), coffee.getRegistered(), coffee.getCoffeeType());
+    }
+
 }
